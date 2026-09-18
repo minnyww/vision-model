@@ -1,0 +1,18 @@
+steps:
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      - build
+      - '-f'
+      - 'Dockerfile.model'
+      - '--build-arg'
+      - 'MODEL=${_MODEL}'
+      - '-t'
+      - '${_IMAGE}'
+      - '.'
+images:
+  - '${_IMAGE}'
+substitutions:
+  _MODEL: glm-ocr
+  _IMAGE: asia-southeast1-docker.pkg.dev/vondercenter/ollama/ollama-glm-ocr
+options:
+  logging: CLOUD_LOGGING_ONLY
